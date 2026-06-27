@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: monospace;
+  color: #00ff66;
+
+  background-color: #001a10; /* deep green-black */
+}
+
+body {
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.35);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.15) 3px
+  );
+
+  z-index: 9999;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.98; }
+  100% { opacity: 1; }
+}
+
+body {
+  animation: flicker 0.1s infinite;
+}
+
+.file {
+  cursor: pointer;
+  padding: 5px;
+  width: fit-content;
+}
+
+.file:hover {
+  background: rgba(0, 255, 102, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+#player-container {
+  margin-top: 20px;
+}
+
+#close-player {
+  margin-top: 10px;
+  background: black;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+  font-family: monospace;
+  cursor: pointer;
+}
