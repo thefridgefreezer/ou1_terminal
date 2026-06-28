@@ -65,10 +65,6 @@ body::before {
   margin-left: 20px;
 }
 
-.hidden {
-  display: none;
-}
-
 .terminal {
   margin-left: 40px;
   margin-top: 30px;
@@ -141,4 +137,8 @@ pre {
   max-height: 50vh;
   overflow-y: auto;
   white-space: pre-wrap;
+}
+
+.hidden {
+  display: none;
 }
