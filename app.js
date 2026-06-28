@@ -85,33 +85,43 @@ document.querySelectorAll(".file").forEach(file => {
   });
 });
 
-//IF FILE IS OPEN
+//IF FILE IS OPENED
 function openFile(file) {
 
   const type = file.getAttribute("data-type") || "audio";
 
-  // 📄 TEXT FILE
-if (type === "text") {
-  const filePath = file.getAttribute("data-file");
+  switch (type) {
 
-  fetch(filePath)
-    .then(res => res.text())
-    .then(text => {
-      textContent.textContent = text;
-      textPanel.classList.remove("hidden");
-    });
+    case "text": {
 
-  return;
-}
+      const filePath = file.getAttribute("data-file");
 
-  // 🎧 AUDIO FILE
-  const audio = file.getAttribute("data-audio");
+      fetch(filePath)
+        .then(res => res.text())
+        .then(text => {
+          textContent.textContent = text;
+          textPanel.classList.remove("hidden");
+        });
 
-  playerContainer.classList.remove("hidden");
-  player.src = audio;
-  player.play();
+      break;
+    }
 
-  player.scrollIntoView({ behavior: "smooth" });
+    case "audio": {
+
+      const audio = file.getAttribute("data-audio");
+
+      playerContainer.classList.remove("hidden");
+      player.src = audio;
+      player.play();
+
+      player.scrollIntoView({ behavior: "smooth" });
+
+      break;
+    }
+
+    default:
+      alert("Unknown file type.");
+  }
 }
 
 //PASSWORD

@@ -1,3 +1,7 @@
+/* ==========================
+   DESKTOP (default)
+========================== */
+
 body {
   margin: 0;
   font-family: monospace;
@@ -151,4 +155,25 @@ pre {
 
 .hidden {
   display: none;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (orientation: portrait) {
+
+  body {
+    font-size: 1.3rem;
+  }
+
+  .terminal {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .ui {
+    width: 90%;
+  }
+
 }
