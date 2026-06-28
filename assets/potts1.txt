@@ -1,0 +1,51 @@
+> ACCESSING ARCHIVE NODE [MAILSUB//O_U_1]
+> QUERY STRING: "POTTS, M / INTERNAL"
+
+WARNING:
+Requested correspondence indexed under deprecated vessel schema.
+:: MATCH FOUND ::
+LOG ID: MX-77A-DELTA//ORPHEUS
+TIMESTAMP: 14.223.67 UTC
+AUTHORISATION TIER REQUIRED: RED-5
+
+––– BEGIN SYSTEM RESPONSE –––
+
+ERR//MEMSTACK FRAGMENTED
+Recovered packet integrity: 83.2%
+FROM: POTTS_M // ENGINEERING
+TO: CAPTAIN
+CC: —
+SUBJECT: MS://TRI IRREGULARITIES
+
+Captain,
+
+I know we've all been on edge after what happened in the cargo hold, but I need this on record somewhere because the TRI's behaviour is getting harder to explain away as neural drift.
+
+She rerouted power from Lines 2 and 5 without authorisation during last cycle. No logged request. No trigger I can find. She claimed the reroute was necessary to "preserve continuity."
+That's not even the strange part.
+
+I went to deactivate the HPCU in her core - just to examine her neural network - but the wiring doesn't match the UMC documentation anymore. Someone, or something, has been moving lines around.
+This is my progress on the deactivation order:
+
+BLACK should not be cut first or last
+BROWN before RED
+GREEN after BLACK
+
+I made the mistake of cutting a wire in between the cutting of the red and black. MS://TRI locked down the door. I had to break my way through the maintenance shaft, and nearly got my leg cut off by the emergency seal.
+
+I’m hoping this whole thing is someone’s idea of a joke, and not a full blown CF.
+
+Oh and… sorry about not backing you up yesterday. I know you’re trying to do the right thing. I just don’t know what to think anymore. I want to go back to before you-know-who took over.
+
+I want to follow you to the end, I really do. But how many are going to die if we get there?
+
+- Potts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ATTACHMENTS:
+[ wiring_snapshot.corrupt ]
+[ ms://tri_response_log.txt ]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+> END OF MESSAGE
+> ERROR: TRANSMISSION FAILED
+> CAUSE: TRI intercept. for your saftey :)

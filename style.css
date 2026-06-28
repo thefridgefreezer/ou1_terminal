@@ -2,12 +2,11 @@ body {
   margin: 0;
   font-family: monospace;
   color: #00ff66;
-
-  background-color: #001a10; /* deep green-black */
-}
-
-body {
+  background-color: #001a10;
   text-shadow: 0 0 8px rgba(0, 255, 102, 0.35);
+  min-height: 100vh;
+  overflow-y: auto;
+  animation: flicker 0.1s infinite;
 }
 
 body::before {
@@ -32,10 +31,6 @@ body::before {
   100% { opacity: 1; }
 }
 
-body {
-  animation: flicker 0.1s infinite;
-}
-
 .file {
   cursor: pointer;
   padding: 5px;
@@ -46,19 +41,104 @@ body {
   background: rgba(0, 255, 102, 0.1);
 }
 
-.hidden {
-  display: none;
-}
-
 #player-container {
   margin-top: 20px;
 }
 
 #close-player {
   margin-top: 10px;
-  background: black;
+  background: #001a10;
   color: #00ff66;
   border: 1px solid #00ff66;
   font-family: monospace;
   cursor: pointer;
+}
+
+.folder {
+  cursor: pointer;
+  padding: 8px 0;
+  color: #00ff66;
+  text-shadow: 0 0 6px rgba(0, 255, 102, 0.5);
+}
+
+.files {
+  margin-left: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.terminal {
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.ui {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #001100;
+  border: 1px solid #00ff66;
+  padding: 20px;
+  width: 70%;
+  max-width: 800px;
+  color: #00ff66;
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ui input {
+  width: 50%;
+  display: block;
+  margin: auto;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 10px;
+  background: black;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+  padding: 5px;
+}
+
+.ui button {
+  width: 50%;
+  display: block;
+  margin: auto;
+  text-align: center;
+  box-sizing: border-box;  
+  background: black;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+  padding: 6px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ui h3 {
+  text-align: center;
+  width: 100%;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+#text-panel {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+#text-content {
+  max-height: 50vh;
+  overflow-y: auto;
+  white-space: pre-wrap;
 }

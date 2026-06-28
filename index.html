@@ -5,24 +5,50 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
- <h1>O.U.1 // ARCHIVE NODE</h1>
 
-  <div class="file-list">
+ <div class="terminal"> <!--used to move all text-->
 
-    <div class="file" data-audio="assets/test1.mp3">
-      ENG_LOG_01_CORRUPTED
-    </div>
+    <h1>O.U.1 // ARCHIVE NODE</h1>
 
-    <div class="file" data-audio="assets/test2.mp3">
-      ENG_LOG_02_FRAGMENTED
-    </div>
+    <!--PASSWORD BOX-->
+<div id="password-panel" class="ui hidden">
+  <h3>WELCOME CAPTAIN</h3>
+  <input type="password" id="password-input" placeholder="Enter password">
+  <button id="password-submit">CONFIRM</button>
+  <button id="password-cancel">CANCEL</button>
+</div>
 
+<!--TEXT BOX-->
+<div id="text-panel" class="ui hidden">
+  <pre id="text-content"></pre>
+  <button id="text-close">CLOSE</button>
+</div>
+
+<!--FOLDERS AND FILES-->
+<div class="folder" data-folder="engineering">C:\ENGINEERING</div>
+<div class="files hidden" id="engineering">
+  <div class="file" data-audio="assets/test1.mp3">ENGINE LOG 01</div>
+
+  <div class="file locked" data-password="omega" data-type="text" data-file="assets/potts1.txt">
+    POTTS EMAIL INTERCEPTED
   </div>
+</div>
 
-  <div id="player-container" class="hidden">
+<div class="folder" data-folder="security">C:\SECURITY</div>
+<div class="files hidden" id="security">
+  <div class="file locked" data-password="omega" data-audio="assets/test2.mp3">SECURITY LOG 01</div>
+</div>
+
+<div class="folder" data-folder="cronus">G:\PROJECT CRONUS</div>
+<div class="files hidden" id="cronus">
+  <div class="file locked" data-password="omega" data-type="text" data-file="assets/potts1.txt">CARGO SPECIFICATIONS</div>
+
+<!--CLOSE LOG BUTTON-->
+ <div id="player-container" class="hidden">
   <audio id="player" controls></audio>
   <button id="close-player">CLOSE LOG</button>
 </div>
+ </div>
 
   <script src="app.js"></script>
 </body>
