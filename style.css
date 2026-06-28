@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "IBM Bios 2y";
-  src: url("assets/fonts/PxPlus_IBM_BIOS-2y.ttf") format("ttf");
+  src: url("assets/fonts/PxPlus_IBM_BIOS-2y.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
