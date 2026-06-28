@@ -17,26 +17,23 @@ const loadingPanel = document.getElementById("loading-panel");
 const loadingText = document.getElementById("loading-text");
 
 //SWEEP ANIMATION
-function triggerSweep() {
-  document.body.classList.remove("sweep");
+const DURATION = 8000;
 
-  // force reflow so animation can restart
-  void document.body.offsetWidth;
-
-  document.body.classList.add("sweep");
-}
+let sweepActive = false;
 
 function triggerSweep() {
+  if (sweepActive) return; // prevents overlap
+
+  sweepActive = true;
+
   document.body.classList.remove("sweep");
-
   void document.body.offsetWidth;
-
   document.body.classList.add("sweep");
 
-  // remove class after animation completes so it can retrigger cleanly
   setTimeout(() => {
     document.body.classList.remove("sweep");
-  }, 4000);
+    sweepActive = false;
+  }, DURATION);
 }
 
 function scheduleSweep() {

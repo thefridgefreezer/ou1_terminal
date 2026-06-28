@@ -50,9 +50,9 @@ body::after {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(0, 255, 102, 0.08) 45%,
-    rgba(0, 255, 102, 0.18) 50%,
-    rgba(0, 255, 102, 0.08) 55%,
+    rgba(0, 255, 102, 0.04) 45%,
+    rgba(0, 255, 102, 0.08) 50%,
+    rgba(0, 255, 102, 0.04) 55%,
     transparent 100%
   );
 
@@ -62,7 +62,7 @@ body::after {
 }
 
 body.sweep::after {
-  animation: scanline-sweep 4s linear;
+  animation: scanline-sweep 8s linear;
   opacity: 1;
 }
 
@@ -74,11 +74,11 @@ body.sweep::after {
 
 @keyframes scanline-sweep {
   0% {
-    transform: translateY(-120%) skewX(0deg);
+    transform: translateY(-150%) skewX(0deg);
   }
 
   100% {
-    transform: translateY(120%) skewX(0deg);
+    transform: translateY(120%) skewX(5deg);
   }
 }
 
