@@ -46,7 +46,6 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 10000;
-  animation-fill-mode: forwards;
 
   background: linear-gradient(
     to bottom,
@@ -57,14 +56,14 @@ body::after {
     transparent 100%
   );
 
-  animation: 
-   scanline-sweep 4s linear,
-   scanline-flicker 0.15s infinite;
+  mix-blend-mode: screen;
+  opacity: 0; /* idle = invisible */
   mix-blend-mode: screen;
 }
 
 body.sweep::after {
   animation: scanline-sweep 4s linear;
+  opacity: 1;
 }
 
 @keyframes flicker {

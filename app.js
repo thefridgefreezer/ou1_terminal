@@ -26,9 +26,22 @@ function triggerSweep() {
   document.body.classList.add("sweep");
 }
 
+function triggerSweep() {
+  document.body.classList.remove("sweep");
+
+  void document.body.offsetWidth;
+
+  document.body.classList.add("sweep");
+
+  // remove class after animation completes so it can retrigger cleanly
+  setTimeout(() => {
+    document.body.classList.remove("sweep");
+  }, 4000);
+}
+
 function scheduleSweep() {
-  const min = 3000;  // 3 seconds
-  const max = 12000; // 12 seconds
+  const min = 3000;
+  const max = 12000;
 
   const delay = Math.random() * (max - min) + min;
 
