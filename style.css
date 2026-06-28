@@ -40,10 +40,56 @@ body::before {
   z-index: 9999;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+  animation-fill-mode: forwards;
+
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 255, 102, 0.08) 45%,
+    rgba(0, 255, 102, 0.18) 50%,
+    rgba(0, 255, 102, 0.08) 55%,
+    transparent 100%
+  );
+
+  animation: 
+   scanline-sweep 4s linear,
+   scanline-flicker 0.15s infinite;
+  mix-blend-mode: screen;
+}
+
+body.sweep::after {
+  animation: scanline-sweep 4s linear;
+}
+
 @keyframes flicker {
   0% { opacity: 1; }
   50% { opacity: 0.98; }
   100% { opacity: 1; }
+}
+
+@keyframes scanline-sweep {
+  0% {
+    transform: translateY(-100%) skewX(0deg);
+  }
+
+  50% {
+    transform: translateY(0%) skewX(0.3deg);
+  }
+
+  100% {
+    transform: translateY(100%) skewX(0deg);
+  }
+}
+
+@keyframes scanline-flicker {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
 }
 
 .file {

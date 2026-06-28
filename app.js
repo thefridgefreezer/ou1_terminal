@@ -16,6 +16,30 @@ const closeBtn = document.getElementById("close-player");
 const loadingPanel = document.getElementById("loading-panel");
 const loadingText = document.getElementById("loading-text");
 
+//SWEEP ANIMATION
+function triggerSweep() {
+  document.body.classList.remove("sweep");
+
+  // force reflow so animation can restart
+  void document.body.offsetWidth;
+
+  document.body.classList.add("sweep");
+}
+
+function scheduleSweep() {
+  const min = 3000;  // 3 seconds
+  const max = 12000; // 12 seconds
+
+  const delay = Math.random() * (max - min) + min;
+
+  setTimeout(() => {
+    triggerSweep();
+    scheduleSweep();
+  }, delay);
+}
+
+scheduleSweep();
+
 // FOLDERS
 document.querySelectorAll(".folder").forEach(folder => {
   folder.addEventListener("click", () => {
