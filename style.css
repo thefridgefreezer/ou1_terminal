@@ -139,6 +139,16 @@ pre {
   white-space: pre-wrap;
 }
 
+#loading-text {
+  text-align: center;
+  min-height: 60px;
+}
+
+.warning {
+  color:red;
+  text-shadow: 0 0 8px red;
+}
+
 .hidden {
   display: none;
 }

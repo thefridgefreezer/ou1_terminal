@@ -13,6 +13,9 @@ const player = document.getElementById("player");
 const playerContainer = document.getElementById("player-container");
 const closeBtn = document.getElementById("close-player");
 
+const loadingPanel = document.getElementById("loading-panel");
+const loadingText = document.getElementById("loading-text");
+
 // FOLDERS
 document.querySelectorAll(".folder").forEach(folder => {
   folder.addEventListener("click", () => {
@@ -27,16 +30,58 @@ document.querySelectorAll(".folder").forEach(folder => {
 document.querySelectorAll(".file").forEach(file => {
   file.addEventListener("click", () => {
 
-    // 🔐 LOCKED FILES → show password UI
+    // 🔐 LOCKED FILES → show loading panel, then password ui
     if (file.classList.contains("locked")) {
-      activeFile = file;
-      passwordPanel.classList.remove("hidden");
-      passwordInput.value = "";
-      passwordInput.focus();
-      return;
-    }
+  activeFile = file;
 
-    openFile(file);
+  showLoading(() => {
+    passwordPanel.classList.remove("hidden");
+    passwordInput.value = "";
+    passwordInput.focus();
+  });
+
+  return;
+}
+
+    //LOADING ANIMATION
+    function showLoading(callback) {
+  const messages = [
+  "ACCESSING NODE...",
+  "INITIALISING DECRYPTION ENGINE...",
+  "REBUILDING SECTOR MAP...",
+  "<span class='warning'>WARNING: DATA CORRUPTION DETECTED</span>",
+  "RECOVERING FRAGMENTED PACKETS...",
+  "FILE FOUND"
+];
+
+  let i = 0;
+
+  loadingPanel.classList.remove("hidden");
+
+  function nextLine() {
+    if (i < messages.length) {
+      loadingText.innerHTML = messages[i];
+      i++;
+      const min = 100;
+      const max = 650;
+
+      const delay = Math.floor(Math.random() * (max - min + 1)) + min;
+
+      setTimeout(nextLine, delay);
+    } else {
+      setTimeout(() => {
+        loadingPanel.classList.add("hidden");
+        callback();
+      }, 300);
+    }
+  }
+
+  nextLine();
+}
+
+    showLoading(() => {
+  openFile(file);
+});
   });
 });
 
