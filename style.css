@@ -164,12 +164,12 @@ pre {
 @media (orientation: portrait) {
 
   body {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .terminal {
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 75px;
+    margin-right: 75px;
   }
 
   .ui {
@@ -178,7 +178,7 @@ pre {
 
   .ui button {
   width: 80%;
-  padding: 20px;
+  padding: 80px 20px;
   font-size: 1.5rem;
   }
 
