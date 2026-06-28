@@ -164,7 +164,7 @@ pre {
 @media (orientation: portrait) {
 
   body {
-    font-size: 2.7rem;
+    font-size: 2.6rem;
   }
 
   .terminal {
@@ -178,8 +178,23 @@ pre {
 
   .ui button {
   width: 80%;
-  padding: 35px 20px;
-  font-size: 2.7rem;
+  padding: 35px;
+  font-size: 2.6rem;
+  }
+
+  .ui input {
+  width: 80%;
+  display: block;
+  margin: auto;
+  text-align: center;
+  box-sizing: border-box;
+
+  background: black;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+
+  padding: 12px;
+  font-size: 2.6rem;
   }
 
 }
