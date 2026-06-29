@@ -1,6 +1,8 @@
 const bootScreen = document.getElementById("boot-screen");
 const app = document.getElementById("app");
 
+const bootSound = new Audio("assets/audio/boot.mp3");
+
 if (!bootScreen || !app) {
   console.error("Boot elements missing");
 }
@@ -60,13 +62,21 @@ function typeIntoBuffer(text, speed = 35) {
 }
 
 async function runBootSequence() {
-  for (let i = 0; i < bootLines.length; i++) {
+ bootSound.currentTime = 0;
+ bootSound.volume = 1;
+ bootSound.play();
 
-    // reserve space in buffer for new line
-    buffer.unshift("");
+ setTimeout(() => {
+  fadeOutAudio(bootSound, 3000); // fade over 2 seconds
+ }, 5000);
+   
+ for (let i = 0; i < bootLines.length; i++) {
 
-    if (buffer.length > MAX_LINES) {
-      buffer.pop();
+ // reserve space in buffer for new line
+ buffer.unshift("");
+
+ if (buffer.length > MAX_LINES) {
+   buffer.pop();
     }
 
     await typeIntoBuffer(bootLines[i], 35);
@@ -75,6 +85,24 @@ async function runBootSequence() {
   }
 
   showLogo();
+}
+
+function fadeOutAudio(audio, duration = 2000) {
+  const steps = 20;
+  const stepTime = duration / steps;
+  let currentStep = 0;
+
+  const fade = setInterval(() => {
+    currentStep++;
+
+    audio.volume = Math.max(0, 1 - currentStep / steps);
+
+    if (currentStep >= steps) {
+      clearInterval(fade);
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }, stepTime);
 }
 
 function showLogo() {
