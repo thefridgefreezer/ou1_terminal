@@ -84,7 +84,8 @@ function showLogo() {
   logo.src = "assets/logo2.png";
   logo.alt = "UMC Logo";
 
-  logo.style.width = "200px";      // tweak this
+  logo.style.width = "70vw";      // tweak this
+  logo.style.maxWidth = "400px"
   logo.style.height = "auto";
   logo.style.display = "block";
   logo.style.margin = "40vh auto 0 auto";
@@ -101,7 +102,7 @@ function showLogo() {
   setTimeout(() => {
     bootScreen.remove();
     app.classList.remove("hidden");
-  }, 1200);
+  }, 1500);
 }
 
    function finishBoot() {
