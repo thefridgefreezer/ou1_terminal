@@ -18,16 +18,16 @@
 
     <!--PASSWORD BOX-->
     <div id="password-panel" class="ui hidden">
-    <h3>WELCOME CAPTAIN</h3>
-    <input type="password" id="password-input" placeholder="Enter password">
-    <button id="password-submit">CONFIRM</button>
-    <button id="password-cancel">CANCEL</button>
+     <h3>WELCOME CAPTAIN</h3>
+     <input type="password" id="password-input" placeholder="Enter password">
+     <button id="password-submit">CONFIRM</button>
+     <button id="password-cancel">CANCEL</button>
     </div>
 
     <!--TEXT BOX-->
     <div id="text-panel" class="ui hidden">
-    <pre id="text-content"></pre>
-    <button id="text-close">CLOSE</button>
+     <pre id="text-content"></pre>
+     <button id="text-close">CLOSE</button>
     </div>
 
     <div id="loading-panel" class="ui hidden">
@@ -36,24 +36,27 @@
     </div>
 
     <!--FOLDERS AND FILES-->
+
+    <!--ENGINEERING FOLDER-->
     <div class="folder" data-folder="engineering">C:\ENGINEERING</div>
     <div class="files hidden" id="engineering">
-    <div class="file" data-audio="assets/audio/test1.mp3">ENGINE LOG 01</div>
-
-    <div class="file locked" data-password="omega" data-type="text" data-file="assets/text/potts1.txt">
-    POTTS EMAIL INTERCEPTED
-    </div>
+      <!--FILES-->
+     <div class="file" data-audio="assets/audio/test1.mp3">ENGINE LOG 01</div>
+     <div class="file locked" data-password="omega" data-type="text" data-file="assets/text/potts1.txt">POTTS EMAIL INTERCEPTED</div>
     </div>
 
+    <!--SECURITY FOLDER-->
     <div class="folder" data-folder="security">C:\SECURITY</div>
     <div class="files hidden" id="security">
-    <div class="file locked" data-password="omega" data-audio="assets/audio/test1.mp3">SECURITY LOG 01</div>
+     <!--FILES-->
+     <div class="file locked" data-password="omega" data-audio="assets/audio/test1.mp3">SECURITY LOG 01</div>
     </div>
 
+   <!--CRONUS FOLDER-->
     <div class="folder" data-folder="cronus">G:\PROJECT CRONUS</div>
     <div class="files hidden" id="cronus">
-    <div class="file locked" data-password="omega" data-type="text" data-file="assets/text/project_cronus.txt">README.TXT</div>
-
+     <!--FILES-->
+     <div class="file locked" data-password="omega" data-type="text" data-file="assets/text/project_cronus.txt">README.TXT</div>
     </div>
 
     <!--CLOSE LOG BUTTON-->
