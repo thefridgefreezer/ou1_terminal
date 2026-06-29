@@ -12,32 +12,65 @@ const bootLines = [
   "MOUNTING USER INTERFACE..."
 ];
 
-function typeLine(text, container, speed = 40) {
+const MAX_LINES = 4;
+let buffer = [];
+
+function renderBuffer() {
+  bootScreen.innerHTML = "";
+
+  buffer.forEach(text => {
+    const line = document.createElement("div");
+    line.textContent = text;
+    bootScreen.appendChild(line);
+  });
+}
+
+function addBootLine(text) {
+  buffer.unshift(text); // new line goes to TOP
+
+  if (buffer.length > MAX_LINES) {
+    buffer.pop(); // remove oldest (bottom)
+  }
+
+  renderBuffer();
+}
+
+function typeIntoBuffer(text, speed = 35) {
   return new Promise((resolve) => {
     let i = 0;
+    let current = "";
 
-    const line = document.createElement("div");
-    container.appendChild(line);
-
-    function typeChar() {
+    function step() {
       if (i < text.length) {
-        line.textContent += text.charAt(i);
+        current += text.charAt(i);
         i++;
-        setTimeout(typeChar, speed);
+
+        // temporarily show in top slot
+        buffer[0] = current;
+        renderBuffer();
+
+        setTimeout(step, speed);
       } else {
         resolve();
       }
     }
 
-    typeChar();
+    step();
   });
 }
 
 async function runBootSequence() {
   for (let i = 0; i < bootLines.length; i++) {
-    await typeLine(bootLines[i], bootScreen, 35);
 
-    // small delay between lines (optional feel tweak)
+    // reserve space in buffer for new line
+    buffer.unshift("");
+
+    if (buffer.length > MAX_LINES) {
+      buffer.pop();
+    }
+
+    await typeIntoBuffer(bootLines[i], 35);
+
     await new Promise(r => setTimeout(r, 150));
   }
 
@@ -48,7 +81,7 @@ function showLogo() {
   bootScreen.innerHTML = "";
 
   const logo = document.createElement("img");
-  logo.src = "assets/logo.png";
+  logo.src = "assets/logo2.png";
   logo.alt = "UMC Logo";
 
   logo.style.width = "200px";      // tweak this
