@@ -12,22 +12,54 @@ const bootLines = [
   "MOUNTING USER INTERFACE..."
 ];
 
-function runBootSequence() {
-  let i = 0;
+function typeLine(text, container, speed = 40) {
+  return new Promise((resolve) => {
+    let i = 0;
 
-  const interval = setInterval(() => {
-    if (i < bootLines.length) {
-      const line = document.createElement("div");
-      line.className = "boot-line";
-      line.textContent = bootLines[i];
-      bootScreen.appendChild(line);
+    const line = document.createElement("div");
+    container.appendChild(line);
 
-      i++;
-     } else {
-     clearInterval(interval);
-     finishBoot();
-     }
-    
+    function typeChar() {
+      if (i < text.length) {
+        line.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeChar, speed);
+      } else {
+        resolve();
+      }
+    }
+
+    typeChar();
+  });
+}
+
+async function runBootSequence() {
+  for (let i = 0; i < bootLines.length; i++) {
+    await typeLine(bootLines[i], bootScreen, 35);
+
+    // small delay between lines (optional feel tweak)
+    await new Promise(r => setTimeout(r, 150));
+  }
+
+  showLogo();
+}
+
+function showLogo() {
+  bootScreen.innerHTML = "";
+
+  const logo = document.createElement("div");
+  logo.textContent = "UMC";
+  logo.style.fontSize = "3rem";
+  logo.style.textAlign = "center";
+  logo.style.marginTop = "40vh";
+
+  bootScreen.appendChild(logo);
+
+  setTimeout(() => {
+    bootScreen.remove();
+    app.classList.remove("hidden");
+  }, 1000);
+}
 
    function finishBoot() {
    setTimeout(() => {
