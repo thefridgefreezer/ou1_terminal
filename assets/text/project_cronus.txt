@@ -1,0 +1,21 @@
+<!> WARNING <!>
+THIS FOLDER CONTAINS FILES OF A SENSITIVE NATURE. DO NOT SHARE, CREATE COPIES, OR OTHERWISE THREATEN THE SECURITY OF UMC ASSETS.
+
+# Project {}(TRI_INTERCEPT--)}
+This document contains relevant information for the safe transport and security of <<<?!FILE_CORRUPTED>>
+
+## Description
+<<<?!FILE_CORRUPTED>>
+
+## Installation
+Dedicated UMC project staff are responsible for installation of the cargo and safety devices before flight. The cargo is locked to the ship’s gravity using a REM-lock. Do not interfere with any of the installed devices while the ship is in flight.
+
+### Safety Procedures
+The cargo container emits small amounts of<<<?!FILE_CORRUPTED>> This is a normal function of the container, however, crew should be advised to wear PPE and refrain from ingesting anything in the cargo bay.
+Access to the cargo bay should be limited to those crew members with security level Red-5.
+
+### Logs
+Consistent logs should be kept on the status of the cargo by the Chief Science Officer (or Captain, should the Science Officer undergo involuntary role cessation) . This information is at the highest security level, and should NEVER be broadcast on unsecured quantum communicators.
+
+### Help
+In the event of an emergency, please activate your ship’s Modular System for immediate assistance.
