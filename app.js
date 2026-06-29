@@ -47,18 +47,28 @@ async function runBootSequence() {
 function showLogo() {
   bootScreen.innerHTML = "";
 
-  const logo = document.createElement("div");
-  logo.textContent = "UMC";
-  logo.style.fontSize = "3rem";
-  logo.style.textAlign = "center";
-  logo.style.marginTop = "40vh";
+  const logo = document.createElement("img");
+  logo.src = "assets/logo.png";
+  logo.alt = "UMC Logo";
+
+  logo.style.width = "200px";      // tweak this
+  logo.style.height = "auto";
+  logo.style.display = "block";
+  logo.style.margin = "40vh auto 0 auto";
+  logo.style.opacity = "0";
+  logo.style.transition = "opacity 0.5s ease";
 
   bootScreen.appendChild(logo);
+
+  // fade in effect
+  setTimeout(() => {
+    logo.style.opacity = "1";
+  }, 50);
 
   setTimeout(() => {
     bootScreen.remove();
     app.classList.remove("hidden");
-  }, 1000);
+  }, 1200);
 }
 
    function finishBoot() {
