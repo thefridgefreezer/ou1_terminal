@@ -13,6 +13,34 @@
   font-style: normal;
 }
 
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #001a10;
+  color: #00ff66;
+  font-family: "IBM Bios 2y", monospace;
+  padding: 40px;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.boot-line {
+  white-space: nowrap;
+  overflow: hidden;
+  animation: boot-scroll 0.5s linear;
+}
+
+@keyframes boot-scroll {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
 body {
   margin: 0;
   font-family: "IBM Bios 2y", monospace;

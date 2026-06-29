@@ -1,3 +1,41 @@
+const bootScreen = document.getElementById("boot-screen");
+const app = document.getElementById("app");
+
+if (!bootScreen || !app) {
+  console.error("Boot elements missing");
+}
+
+const bootLines = [
+  "INITIALISING SYSTEM...",
+  "LOADING ARCHIVE NODE...",
+  "VERIFYING ACCESS PROTOCOLS...",
+  "MOUNTING USER INTERFACE..."
+];
+
+function runBootSequence() {
+  let i = 0;
+
+  const interval = setInterval(() => {
+    if (i < bootLines.length) {
+      const line = document.createElement("div");
+      line.className = "boot-line";
+      line.textContent = bootLines[i];
+      bootScreen.appendChild(line);
+
+      i++;
+     } else {
+     clearInterval(interval);
+     finishBoot();
+     }
+    
+
+   function finishBoot() {
+   setTimeout(() => {
+    bootScreen.remove();
+    app.classList.remove("hidden");
+  }, 500);
+}
+
 const passwordPanel = document.getElementById("password-panel");
 const passwordInput = document.getElementById("password-input");
 const passwordSubmit = document.getElementById("password-submit");
@@ -192,3 +230,5 @@ if (closeBtn) {
 textClose.addEventListener("click", () => {
   textPanel.classList.add("hidden");
 });
+
+runBootSequence();
