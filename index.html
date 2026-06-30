@@ -16,7 +16,7 @@
 
     <h1>O.U.1 // ARCHIVE NODE</h1>
 
-    <!--PASSWORD BOX-->
+    <!--PASSWORD PANEL-->
     <div id="password-panel" class="ui hidden">
      <h3>WELCOME CAPTAIN</h3>
      <input type="password" id="password-input" placeholder="Enter password">
@@ -24,16 +24,36 @@
      <button id="password-cancel">CANCEL</button>
     </div>
 
-    <!--TEXT BOX-->
+    <!--TEXT PANEL-->
     <div id="text-panel" class="ui hidden">
      <pre id="text-content"></pre>
      <button id="text-close">CLOSE</button>
     </div>
-
+    
+   <!--LOADING PANEL--> 
     <div id="loading-panel" class="ui hidden">
-    <h3 id="loading-title">ACCESSING ARCHIVE</h3>
-    <pre id="loading-text"></pre>
+     <h3 id="loading-title">ACCESSING ARCHIVE</h3>
+     <pre id="loading-text"></pre>
     </div>
+
+   <!--CREW RECORDS PANEL-->
+   <div id="crew-records-panel" class="ui hidden">
+
+     <h3>CREW RECORDS</h3>
+
+     <pre id="crew-records-output">INPUT CREW MEMBER NAME</pre>
+
+     <input
+     type="text"
+     id="crew-records-input"
+     placeholder="Crew member name">
+
+     <div class="crew-buttons">
+     <button id="crew-records-submit">SUBMIT</button>
+     <button id="crew-records-close">CLOSE</button>
+     </div>
+
+   </div>
 
     <!--FOLDERS AND FILES-->
 
@@ -81,10 +101,22 @@
      <button id="close-player">CLOSE LOG</button>
 
     </div>
+    
+    <!--CREW RECORDS BUTTON-->
+    <button id="crew-records-button">CREW RECORDS</button>
 
+
+
+
+
+    
+    
+    <!--KEEP AT BOTTOM!!!-->
     <script src="app.js"></script>
 
+
    </div>
+  </div>
 
 </body>
 </html>

@@ -3,6 +3,33 @@ const app = document.getElementById("app");
 
 const bootSound = new Audio("assets/audio/boot.mp3");
 
+const passwordPanel = document.getElementById("password-panel");
+const passwordInput = document.getElementById("password-input");
+const passwordSubmit = document.getElementById("password-submit");
+const passwordCancel = document.getElementById("password-cancel");
+
+const textPanel = document.getElementById("text-panel");
+const textContent = document.getElementById("text-content");
+const textClose = document.getElementById("text-close");
+
+const crewRecordsButton = document.getElementById("crew-records-button");
+const crewRecordsPanel = document.getElementById("crew-records-panel");
+const crewRecordsOutput = document.getElementById("crew-records-output");
+const crewRecordsInput = document.getElementById("crew-records-input");
+const crewRecordsSubmit = document.getElementById("crew-records-submit");
+const crewRecordsClose = document.getElementById("crew-records-close");
+
+let activeFile = null;
+
+const player = document.getElementById("player");
+const playerContainer = document.getElementById("player-container");
+const closeBtn = document.getElementById("close-player");
+
+const loadingPanel = document.getElementById("loading-panel");
+const loadingText = document.getElementById("loading-text");
+
+
+//BOOT
 if (!bootScreen || !app) {
   console.error("Boot elements missing");
 }
@@ -105,6 +132,7 @@ function fadeOutAudio(audio, duration = 2000) {
   }, stepTime);
 }
 
+//LOGO
 function showLogo() {
   bootScreen.innerHTML = "";
 
@@ -140,24 +168,6 @@ function showLogo() {
   }, 500);
 }
 
-const passwordPanel = document.getElementById("password-panel");
-const passwordInput = document.getElementById("password-input");
-const passwordSubmit = document.getElementById("password-submit");
-const passwordCancel = document.getElementById("password-cancel");
-
-const textPanel = document.getElementById("text-panel");
-const textContent = document.getElementById("text-content");
-const textClose = document.getElementById("text-close");
-
-let activeFile = null;
-
-const player = document.getElementById("player");
-const playerContainer = document.getElementById("player-container");
-const closeBtn = document.getElementById("close-player");
-
-const loadingPanel = document.getElementById("loading-panel");
-const loadingText = document.getElementById("loading-text");
-
 //SWEEP ANIMATION
 const DURATION = 8000;
 
@@ -191,6 +201,55 @@ function scheduleSweep() {
 }
 
 scheduleSweep();
+
+//CREW RECORDS
+crewRecordsButton.addEventListener("click", () => {
+
+  crewRecordsPanel.classList.remove("hidden");
+
+  crewRecordsOutput.textContent = "INPUT CREW MEMBER NAME";
+
+  crewRecordsInput.value = "";
+  crewRecordsInput.focus();
+
+});
+
+crewRecordsClose.addEventListener("click", () => {
+
+  crewRecordsPanel.classList.add("hidden");
+
+});
+
+//NOT WIRED UP!! crew records enter key logic
+crewRecordsInput.addEventListener("keydown", (event) => {
+
+  if (event.key === "Enter") {
+    crewRecordsSubmit.click();
+  }
+
+});
+
+crewRecordsSubmit.addEventListener("click", handleCrewSubmit);
+
+function handleCrewSubmit() {
+
+  const rawInput = crewRecordsInput.value;
+
+  const cleaned = rawInput
+    .trim()
+    .toLowerCase();
+
+  console.log("Crew query:", cleaned);
+
+  crewRecordsOutput.textContent =
+    "SEARCHING ARCHIVE...\n\n> " + cleaned;
+}
+
+crewRecordsInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    handleCrewSubmit();
+  }
+});
 
 // FOLDERS
 document.querySelectorAll(".folder").forEach(folder => {

@@ -215,6 +215,7 @@ pre {
 #text-panel {
   max-height: 70vh;
   overflow-y: auto;
+  z-index:1001;
 }
 
 #text-content {
@@ -235,6 +236,90 @@ pre {
 
 .hidden {
   display: none;
+}
+
+/* ==========================
+   CREW RECORDS TERMINAL
+========================== */
+
+#crew-records-panel:not(.hidden) {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+
+  transform: none;
+
+  width: auto;
+  max-width: none;
+
+  height: 38vh;
+
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 501;
+}
+
+#crew-records-button {
+  background: #001a10;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+
+  width: 140px;
+  height: 30px;
+
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+
+  position: fixed;
+  bottom: 40px;
+
+  left: 40px; /* match .terminal margin */
+
+  z-index: 500;
+}
+
+#crew-records-output {
+  flex: 1;
+
+  overflow-y: auto;
+
+  margin: 10px 0;
+
+  background: black;
+
+  border: 1px solid #00ff66;
+
+  padding: 10px;
+}
+
+#crew-records-input {
+  width: 100%;
+  margin: 0;
+}
+
+.crew-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.crew-buttons button {
+  width: auto;
+  margin: 0;
 }
 
 /* ==========================
