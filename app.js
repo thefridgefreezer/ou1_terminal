@@ -18,12 +18,27 @@ const crewRecordsOutput = document.getElementById("crew-records-output");
 const crewRecordsInput = document.getElementById("crew-records-input");
 const crewRecordsSubmit = document.getElementById("crew-records-submit");
 const crewRecordsClose = document.getElementById("crew-records-close");
+const crewRecords = {
+  john: "assets/crew/john.txt",
+  bry1: "assets/crew/bry1.txt",
+  "bry-1": "assets/crew/bry1.txt",
+  blossom: "assets/crew/blossom.txt",
+  captain: "assets/crew/captain.txt",
+  potts: "assets/crew/potts.txt",
+  archimedes: "assets/crew/archimedes.txt",
+  archie: "assets/crew/archimedes.txt",
+  cronus: "assets/crew/cronus.txt",
+  "ms://tri": "assets/crew/ms_tri.txt",
+  terry: "assets/crew/ms_tri.txt",
+};
 
-let activeFile = null;
+
 
 const player = document.getElementById("player");
 const playerContainer = document.getElementById("player-container");
 const closeBtn = document.getElementById("close-player");
+
+let activeFile = null;
 
 const loadingPanel = document.getElementById("loading-panel");
 const loadingText = document.getElementById("loading-text");
@@ -89,21 +104,21 @@ function typeIntoBuffer(text, speed = 35) {
 }
 
 async function runBootSequence() {
- bootSound.currentTime = 0;
- bootSound.volume = 1;
- bootSound.play();
+  bootSound.currentTime = 0;
+  bootSound.volume = 1;
+  bootSound.play();
 
- setTimeout(() => {
-  fadeOutAudio(bootSound, 3000); // fade over 2 seconds
- }, 5000);
-   
- for (let i = 0; i < bootLines.length; i++) {
+  setTimeout(() => {
+    fadeOutAudio(bootSound, 3000); // fade over 2 seconds
+  }, 5000);
 
- // reserve space in buffer for new line
- buffer.unshift("");
+  for (let i = 0; i < bootLines.length; i++) {
 
- if (buffer.length > MAX_LINES) {
-   buffer.pop();
+    // reserve space in buffer for new line
+    buffer.unshift("");
+
+    if (buffer.length > MAX_LINES) {
+      buffer.pop();
     }
 
     await typeIntoBuffer(bootLines[i], 35);
@@ -144,7 +159,14 @@ function showLogo() {
   logo.style.maxWidth = "400px"
   logo.style.height = "auto";
   logo.style.display = "block";
+
   logo.style.margin = "40vh auto 0 auto";
+  logo.style.position = "fixed";
+  logo.style.bottom = "20px";
+  logo.style.left = "40px"; /* match .terminal margin */
+
+  logo.style.zIndex = "500";
+
   logo.style.opacity = "0";
   logo.style.transition = "opacity 0.5s ease";
 
@@ -159,13 +181,14 @@ function showLogo() {
     bootScreen.remove();
     app.classList.remove("hidden");
   }, 1500);
-}
 
-   function finishBoot() {
-   setTimeout(() => {
-    bootScreen.remove();
-    app.classList.remove("hidden");
-  }, 500);
+
+  function finishBoot() {
+    setTimeout(() => {
+      bootScreen.remove();
+      app.classList.remove("hidden");
+    }, 500);
+  }
 }
 
 //SWEEP ANIMATION
@@ -242,7 +265,12 @@ function handleCrewSubmit() {
   console.log("Crew query:", cleaned);
 
   crewRecordsOutput.textContent =
-    "SEARCHING ARCHIVE...\n\n> " + cleaned;
+    "SEARCHING ARCHIVE...";
+  
+ setTimeout(() => {
+   loadCrewRecord(cleaned);
+ }, 800);
+
 }
 
 crewRecordsInput.addEventListener("keydown", (e) => {
@@ -250,6 +278,21 @@ crewRecordsInput.addEventListener("keydown", (e) => {
     handleCrewSubmit();
   }
 });
+
+function loadCrewRecord(name) {
+  const filePath = crewRecords[name];
+
+  if (!filePath) {
+    crewRecordsOutput.textContent = "CREW MEMBER NOT FOUND. CHECK SPELLING :)";
+    return;
+  }
+
+  fetch(filePath)
+    .then(res => res.text())
+    .then(text => {
+      crewRecordsOutput.textContent = text;
+    });
+}
 
 // FOLDERS
 document.querySelectorAll(".folder").forEach(folder => {
@@ -267,56 +310,56 @@ document.querySelectorAll(".file").forEach(file => {
 
     // 🔐 LOCKED FILES → show loading panel, then password ui
     if (file.classList.contains("locked")) {
-  activeFile = file;
+      activeFile = file;
 
-  showLoading(() => {
-    passwordPanel.classList.remove("hidden");
-    passwordInput.value = "";
-    passwordInput.focus();
-  });
+      showLoading(() => {
+        passwordPanel.classList.remove("hidden");
+        passwordInput.value = "";
+        passwordInput.focus();
+      });
 
-  return;
-}
+      return;
+    }
 
     //LOADING ANIMATION
     function showLoading(callback) {
-  const messages = [
-  "ACCESSING NODE...",
-  "INITIALISING DECRYPTION ENGINE...",
-  "REBUILDING SECTOR MAP...",
-  "<span class='warning'>WARNING: DATA CORRUPTION DETECTED</span>",
-  "RECOVERING FRAGMENTED PACKETS...",
-  "FILE FOUND"
-];
+      const messages = [
+        "ACCESSING NODE...",
+        "INITIALISING DECRYPTION ENGINE...",
+        "REBUILDING SECTOR MAP...",
+        "<span class='warning'>WARNING: DATA CORRUPTION DETECTED</span>",
+        "RECOVERING FRAGMENTED PACKETS...",
+        "FILE FOUND"
+      ];
 
-  let i = 0;
+      let i = 0;
 
-  loadingPanel.classList.remove("hidden");
+      loadingPanel.classList.remove("hidden");
 
-  function nextLine() {
-    if (i < messages.length) {
-      loadingText.innerHTML = messages[i];
-      i++;
-      const min = 100;
-      const max = 650;
+      function nextLine() {
+        if (i < messages.length) {
+          loadingText.innerHTML = messages[i];
+          i++;
+          const min = 100;
+          const max = 650;
 
-      const delay = Math.floor(Math.random() * (max - min + 1)) + min;
+          const delay = Math.floor(Math.random() * (max - min + 1)) + min;
 
-      setTimeout(nextLine, delay);
-    } else {
-      setTimeout(() => {
-        loadingPanel.classList.add("hidden");
-        callback();
-      }, 300);
+          setTimeout(nextLine, delay);
+        } else {
+          setTimeout(() => {
+            loadingPanel.classList.add("hidden");
+            callback();
+          }, 300);
+        }
+      }
+
+      nextLine();
     }
-  }
-
-  nextLine();
-}
 
     showLoading(() => {
-  openFile(file);
-});
+      openFile(file);
+    });
   });
 });
 
