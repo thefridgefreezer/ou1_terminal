@@ -32,7 +32,7 @@ const crewRecords = {
   terry: "assets/crew/ms_tri.txt",
 };
 
-
+let typingActive = false; //Animation limiter for crew records typing
 
 const player = document.getElementById("player");
 const playerContainer = document.getElementById("player-container");
@@ -217,7 +217,7 @@ crewRecordsButton.addEventListener("click", () => {
 
   crewRecordsPanel.classList.remove("hidden");
 
-  crewRecordsOutput.textContent = "INPUT CREW MEMBER NAME";
+  crewRecordsOutput.textContent = ">INPUT CREW MEMBER NAME";
 
   crewRecordsInput.value = "";
   crewRecordsInput.focus();
@@ -277,8 +277,27 @@ function loadCrewRecord(name) {
   fetch(filePath)
     .then(res => res.text())
     .then(text => {
-      crewRecordsOutput.textContent = text;
+      typeIntoElement(crewRecordsOutput, text, 15);
     });
+}
+
+function typeIntoElement(element, text, speed = 10) {
+  if(typingActive) return
+
+  typingActive = true;
+  element.textContent = "";
+
+  let i = 0;
+
+  function step() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(step, speed);
+    }
+  }
+
+  step();
 }
 
 // FOLDERS

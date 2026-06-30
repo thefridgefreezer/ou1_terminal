@@ -338,6 +338,19 @@ pre {
   padding: 10px;
 }
 
+.crew-prompt::after {
+  content: "█";
+  color: #00ff66;
+  margin-left: 6px;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 #crew-records-input {
   width: 100%;
   margin: 0;
