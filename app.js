@@ -154,21 +154,8 @@ function showLogo() {
   const logo = document.createElement("img");
   logo.src = "assets/logo2.png";
   logo.alt = "UMC Logo";
-
-  logo.style.width = "70vw";      // tweak this
-  logo.style.maxWidth = "400px"
-  logo.style.height = "auto";
-  logo.style.display = "block";
-
-  logo.style.margin = "40vh auto 0 auto";
-  logo.style.position = "fixed";
-  logo.style.bottom = "20px";
-  logo.style.left = "40px"; /* match .terminal margin */
-
-  logo.style.zIndex = "500";
-
-  logo.style.opacity = "0";
-  logo.style.transition = "opacity 0.5s ease";
+  
+  logo.classList.add("boot-logo")
 
   bootScreen.appendChild(logo);
 

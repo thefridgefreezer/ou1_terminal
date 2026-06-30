@@ -35,10 +35,30 @@
     transform: translateY(10px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0px);
     opacity: 1;
   }
+}
+
+.boot-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(1);
+
+  width: min(70vw, 400px);
+  height: auto;
+
+  opacity: 0;
+
+  transition: opacity 0.5s ease;
+}
+
+.boot-logo.visible {
+  opacity: 1;
 }
 
 body {
@@ -58,12 +78,10 @@ body::before {
   inset: 0;
   pointer-events: none;
 
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0px,
-    rgba(0, 0, 0, 0) 2px,
-    rgba(0, 0, 0, 0.15) 3px
-  );
+  background: repeating-linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.15) 3px);
 
   z-index: 9999;
 }
@@ -75,17 +93,16 @@ body::after {
   pointer-events: none;
   z-index: 10000;
 
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 255, 102, 0.04) 45%,
-    rgba(0, 255, 102, 0.08) 50%,
-    rgba(0, 255, 102, 0.04) 55%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(0, 255, 102, 0.04) 45%,
+      rgba(0, 255, 102, 0.08) 50%,
+      rgba(0, 255, 102, 0.04) 55%,
+      transparent 100%);
 
   mix-blend-mode: screen;
-  opacity: 0; /* idle = invisible */
+  opacity: 0;
+  /* idle = invisible */
   mix-blend-mode: screen;
 }
 
@@ -95,9 +112,17 @@ body.sweep::after {
 }
 
 @keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.98; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.98;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes scanline-sweep {
@@ -111,8 +136,15 @@ body.sweep::after {
 }
 
 @keyframes scanline-flicker {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .file {
@@ -191,7 +223,7 @@ body.sweep::after {
   display: block;
   margin: auto;
   text-align: center;
-  box-sizing: border-box;  
+  box-sizing: border-box;
   background: black;
   color: #00ff66;
   border: 1px solid #00ff66;
@@ -215,7 +247,7 @@ pre {
 #text-panel {
   max-height: 70vh;
   overflow-y: auto;
-  z-index:1001;
+  z-index: 1001;
 }
 
 #text-content {
@@ -230,7 +262,7 @@ pre {
 }
 
 .warning {
-  color:red;
+  color: red;
   text-shadow: 0 0 8px red;
 }
 
@@ -286,7 +318,8 @@ pre {
   position: fixed;
   bottom: 40px;
 
-  left: 40px; /* match .terminal margin */
+  left: 40px;
+  /* match .terminal margin */
 
   z-index: 500;
 }
@@ -342,24 +375,28 @@ pre {
   }
 
   .ui button {
-  width: 80%;
-  padding: 32px;
-  font-size: 2.5rem;
+    width: 80%;
+    padding: 32px;
+    font-size: 2.5rem;
   }
 
   .ui input {
-  width: 80%;
-  display: block;
-  margin: auto;
-  text-align: center;
-  box-sizing: border-box;
+    width: 80%;
+    display: block;
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
 
-  background: black;
-  color: #00ff66;
-  border: 1px solid #00ff66;
+    background: black;
+    color: #00ff66;
+    border: 1px solid #00ff66;
 
-  padding: 12px;
-  font-size: 2.6rem;
+    padding: 12px;
+    font-size: 2.6rem;
   }
 
+  #crew-records-button {
+    font-size: 2.5rem;
+    padding: 20px 24px;
+  }
 }
