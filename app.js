@@ -292,8 +292,14 @@ function typeIntoElement(element, text, speed = 10) {
   function step() {
     if (i < text.length) {
       element.textContent += text.charAt(i);
+
+      // Keep the newest text visible
+      element.scrollTop = element.scrollHeight;
+
       i++;
       setTimeout(step, speed);
+    } else {
+       typingActive = false;
     }
   }
 
