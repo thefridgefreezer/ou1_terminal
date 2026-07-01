@@ -411,5 +411,10 @@ pre {
   #crew-records-button {
     font-size: 2.5rem;
     padding: 20px 24px;
+    width: 90%;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;
+    box-sizing: border-box;
   }
 }
