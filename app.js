@@ -33,6 +33,7 @@ const crewRecords = {
 };
 
 let typingActive = false; //Animation limiter for crew records typing
+let cancelTyping = false;
 
 const player = document.getElementById("player");
 const playerContainer = document.getElementById("player-container");
@@ -42,6 +43,7 @@ let activeFile = null;
 
 const loadingPanel = document.getElementById("loading-panel");
 const loadingText = document.getElementById("loading-text");
+
 
 
 //BOOT
@@ -230,7 +232,7 @@ crewRecordsClose.addEventListener("click", () => {
 
 });
 
-//NOT WIRED UP!! crew records enter key logic
+//crew records enter key logic
 crewRecordsInput.addEventListener("keydown", (event) => {
 
   if (event.key === "Enter") {
@@ -307,17 +309,27 @@ function loadCrewRecord(name) {
     });
 }
 
-function typeIntoElement(element, text, speed = 10) {
+
+function typeIntoElement(element, text, speed = 25) {
   if(typingActive) return
 
+  cancelTyping = false;
   typingActive = true;
+
   element.textContent = "";
 
   let i = 0;
 
   function step() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
+
+     if (cancelTyping) {
+     typingActive = false;
+     return;
+     }
+
+
+     if (i < text.length) {
+       element.textContent += text.charAt(i);
 
       // Keep the newest text visible
       element.scrollTop = element.scrollHeight;
@@ -331,6 +343,17 @@ function typeIntoElement(element, text, speed = 10) {
 
   step();
 }
+
+crewRecordsClose.addEventListener("click", () => {
+
+  cancelTyping = true;
+
+  crewRecordsPanel.classList.add("hidden");
+
+  crewRecordsInput.value = "";
+  crewRecordsOutput.textContent = "> INPUT CREW MEMBER NAME";
+
+});
 
 // FOLDERS
 document.querySelectorAll(".folder").forEach(folder => {

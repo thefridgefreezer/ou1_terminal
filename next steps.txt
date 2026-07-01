@@ -1,0 +1,19 @@
+next steps
+
+crew records
+  scroll bar fix
+  end output if panel closed
+  complete:
+    storm
+    potts
+    captain
+    cronus
+    archimedes
+
+files
+  more intercepted emails / texts
+  something to put in engineering - clue?
+
+
+ui
+  null

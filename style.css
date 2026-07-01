@@ -418,4 +418,9 @@ pre {
     margin: 40px auto;
     box-sizing: border-box;
   }
+
+  #crew-records-output {
+    font-size: 1.55rem;
+  }
+
 }
