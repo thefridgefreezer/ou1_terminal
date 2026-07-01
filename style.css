@@ -411,7 +411,8 @@ pre {
   #crew-records-button {
     font-size: 2.5rem;
     padding: 20px 24px;
-    width: 150%;
+    width: 100%;
+    height: min-content;
     max-width: 500px;
     display: block;
     margin: 40px auto;
