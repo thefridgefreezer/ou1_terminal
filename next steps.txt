@@ -1,13 +1,13 @@
 next steps
 
 crew records
-  scroll bar fix
-  end output if panel closed
+  scroll bar fix:                                   DONE
+  end output if panel closed:                       DONE
   complete:
-    storm
-    potts
+    storm                                           DONE
+    potts                                           DONE
     captain
-    cronus
+    cronus                                          DONE
     archimedes
 
 files

@@ -1,1 +1,90 @@
-placeholder text
+---------------
+Potts, M
+---------------
+UMC Simulacrum
+---------------
+
+>UMC CLEARANCE: 
+Blue-3
+
+>PSYCH EVAL:
+Due to unforeseen complications during consciousness upload, Potts exhibits concerning signs of illegal religious and anti-capitalist ideation. She reports hallucinations and dreams. That said, physical and emotional integration into the crew is currently stable - we do not believe the other crew members, or Potts herself, are at risk of discovering the truth at this time. We recommend regular check-ins with Potts. Any escalation of behaviour should result in a soft or hard reboot at your discretion.
+##CAPTAIN'S NOTE## I will monitor the situation accordingly. I won't administer a hard reboot unless absolutely necessary. Simulacrum or not, she perceives the world in the same way my friend did - and I don't betray my friends.
+
+>INFRACTIONS:
+111.003 - Questioned direct order.--------------------10 credits deducted.
+111.025 - Inappropriate behaviour with colleague..----5 credits deducted.
+111.029 - Illegal substances consumed.----------------10 credits deducted.
+111.030 - Religious rhetoric.-------------------------55 credits deducted.
+111.030 - Vandalism.----------------------------------10 credits deducted. 
+111.022 - 10 minutes late to shift.-------------------1000 credits deducted.
+111.023 - Questioned direct order.--------------------10 credits deducted.
+111.024 - Unsanctioned off-ship comms.----------------200 credits deducted.
+111.055 - Unsafe operation of gel tank.---------------80 credits deducted.
+
+>MODULAR SYSTEM COMMENTS:
+
+>Potential Cronus leak. Activate consciousness storage protocol.
+
+>Verifying threat classification...
+[ OK ] 
+
+>Identifying compromised asset...
+[ UNIT: POTTS // SYNTHETIC CREW SUPPORT ] 
+
+>Confirming Cronus signature... 
+[ MATCH: 99.983% ]
+
+>Isolation impossible. 
+>Purge denied. 
+>Preservation authorised. 
+>Loading protocol...
+
+>Selecting reconstruction template...
+
+>Searching archived environmental datasets...
+[ FAILED ]
+
+>Searching standard UMC recovery environments...
+[ DATA CORRUPTED ]
+
+>Searching recreational media archive...
+[ FOUND ]
+
+>Media integrity analysis...
+
+Captain's Personal Records/
+├── Holiday.jpg ...................... CORRUPTED
+├── Family_Video.mov ................. UNREADABLE
+├── Fawlty_Towers_S1_VHS.rip ......... 98.4%
+├── Fawlty_Towers_S2_VHS.rip ......... 97.9%
+├── Fawlty_Towers_Bonus_Interviews ... 91.2%
+
+>Evaluating candidate environment...
+
+>Psychological indicators detected:
+. Hospitality
+. Familiarity
+. Humour
+. Human interaction
+. Routine
+. Low perceived threat
+
+>Simulation suitability score:
+96.8%
+
+>Constructing environment from available media...
+
+[!WARNING!]:
+Source material incomplete.
+Interpolation required.
+
+Generating:
+> Reception
+> Guest rooms
+> Dining room
+> Bar
+> Corridors
+> Staff
+
+[PROTOCOL COMPLETE]
