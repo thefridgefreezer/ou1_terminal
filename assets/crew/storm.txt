@@ -1,15 +1,15 @@
-------------
-Chaseson, J.
-------------
-Human
-------------
+--------------
+S.T.O.R.M.
+--------------
+Android Gen XI
+--------------
 
 >UMC CLEARANCE: 
 None
 
 >PSYCH EVAL:
-Agressive, insubordinate, paranoid, issues with authority, substance misuse. Request immediate dismissal.
-##CAPTAIN'S NOTE## The UMC agreed that I have authority over who works on my vessel, and John has been steadfast since the beginning. Dismissal request denied.
+
+##CAPTAIN'S NOTE##
 
 >INFRACTIONS:
 111.006 - Illegal substances consumed.----------------10 credits deducted.
@@ -24,4 +24,3 @@ Agressive, insubordinate, paranoid, issues with authority, substance misuse. Req
 
 
 >MODULAR SYSTEM COMMENTS:
-Murderer murderer murderer murderer murderer murderer murderer

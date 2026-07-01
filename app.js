@@ -21,15 +21,15 @@ const crewRecordsClose = document.getElementById("crew-records-close");
 const crewRecords = {
   john: "assets/crew/john.txt",
   bry1: "assets/crew/bry1.txt",
-  "bry-1": "assets/crew/bry1.txt",
   blossom: "assets/crew/blossom.txt",
+  storm: "assets/crew/storm.txt",
   captain: "assets/crew/captain.txt",
   potts: "assets/crew/potts.txt",
   archimedes: "assets/crew/archimedes.txt",
   archie: "assets/crew/archimedes.txt",
   cronus: "assets/crew/cronus.txt",
-  "ms://tri": "assets/crew/ms_tri.txt",
-  terry: "assets/crew/ms_tri.txt",
+  chronos: "assets/crew/cronus.txt",
+  mstri: "assets/crew/mstri.txt",
 };
 
 let typingActive = false; //Animation limiter for crew records typing
@@ -239,25 +239,51 @@ crewRecordsInput.addEventListener("keydown", (event) => {
 
 });
 
+function normaliseCrew(input) {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function resolveCrewName(input) {
+  const cleaned = normaliseCrew(input);
+
+  if (cleaned.includes("john")) return "john";
+  if (cleaned.includes("storm")) return "storm";
+  if (cleaned.includes("blossom")) return "blossom";
+
+  // MS://TRI variants → canonical key
+  if (
+    cleaned.includes("mstri") ||
+    cleaned.includes("terry") ||
+    cleaned.includes("mstri")
+  ) return "mstri";
+
+  if (cleaned.includes("bry1") || cleaned.includes("bry")) return "bry1";
+
+  if (cleaned.includes("cronus") || cleaned.includes("chronos")) return "cronus";
+  if (cleaned.includes("potts")) return "potts";
+  if (cleaned.includes("captain")) return "captain";
+
+  return cleaned;
+}
+
 crewRecordsSubmit.addEventListener("click", handleCrewSubmit);
 
 function handleCrewSubmit() {
 
   const rawInput = crewRecordsInput.value;
 
-  const cleaned = rawInput
-    .trim()
-    .toLowerCase();
+  const resolved = resolveCrewName(rawInput);
 
-  console.log("Crew query:", cleaned);
+  console.log("Crew query:", rawInput, "→", resolved);
 
-  crewRecordsOutput.textContent =
-    "SEARCHING ARCHIVE...";
-  
- setTimeout(() => {
-   loadCrewRecord(cleaned);
- }, 800);
+  crewRecordsOutput.textContent = "SEARCHING ARCHIVE...";
 
+  setTimeout(() => {
+    loadCrewRecord(resolved);
+  }, 800);
 }
 
 crewRecordsInput.addEventListener("keydown", (e) => {
