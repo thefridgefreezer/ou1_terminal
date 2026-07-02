@@ -408,12 +408,12 @@ function loadCrewRecord(name) {
   fetch(filePath)
     .then(res => res.text())
     .then(text => {
-      typeIntoElement(crewRecordsOutput, text, 15);
+      typeIntoElement(crewRecordsOutput, text, 38);
     });
 }
 
 
-function typeIntoElement(element, text, speed = 25) {
+function typeIntoElement(element, text, speed = 20) {
   if (typingActive) return
 
   cancelTyping = false;

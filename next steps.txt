@@ -6,14 +6,16 @@ crew records
   complete:
     storm                                           DONE
     potts                                           DONE
-    captain
+    captain                                         DONE
     cronus                                          DONE
-    archimedes
+    archimedes                                      DONE
 
 files
   more intercepted emails / texts
   something to put in engineering - clue?
 
 
-ui
-  null
+seed codes
+  polaris = binary in  blossom crew record
+  alkaid = morse code in captain's log 476
+  barnard = embedded in archimedes crew record
