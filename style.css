@@ -254,6 +254,7 @@ pre {
   max-height: 50vh;
   overflow-y: auto;
   white-space: pre-wrap;
+  text-align: center;
 }
 
 #loading-text {

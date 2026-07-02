@@ -30,6 +30,7 @@ const crewRecords = {
   cronus: "assets/crew/cronus.txt",
   chronos: "assets/crew/cronus.txt",
   mstri: "assets/crew/mstri.txt",
+  help: "assets/text/help.txt"
 };
 
 let typingActive = false; //Animation limiter for crew records typing
@@ -44,6 +45,88 @@ let activeFile = null;
 const loadingPanel = document.getElementById("loading-panel");
 const loadingText = document.getElementById("loading-text");
 
+const packetNode = document.getElementById("packet-node");
+
+//PACKETS
+const state = {
+  packets: new Set(),
+  resMode: false
+};
+
+function runCommand(command, cleaned, rawInput) {
+
+  switch (command) {
+
+
+    case "exit":
+      resetTerminal();
+      return true;
+
+    case "res":
+      state.resMode = true;
+      crewRecordsOutput.textContent = "ENTER SEED CODE:";
+      return true;
+
+    default:
+      return false;
+  }
+}
+
+const validPackets = new Set([
+  "alkaid",
+  "polaris",
+  "barnard"
+]);
+
+updatePacketUI();
+
+//write codes to memory
+function addPacket(code) {
+  state.packets.add(code);
+  updatePacketUI();
+}
+//return how many unique packets exist
+function getPacketCount() {
+  return state.packets.size;
+}
+//puzzle complete?
+function hasAllPackets() {
+  return state.packets.size >= 3;
+}
+//update file text depending on packets found
+function updatePacketUI() {
+  if (!packetNode) return;
+
+  packetNode.textContent =
+    `RESTORE PACKETS. PACKETS FOUND... ${state.packets.size}/3`;
+}
+
+
+//resmode packet entry
+function handlePacketEntry(input) {
+
+  if (!validPackets.has(input)) {
+    crewRecordsOutput.textContent = "INVALID CODE";
+    return;
+  }
+
+  if (state.packets.has(input)) {
+    crewRecordsOutput.textContent = "CODE ALREADY RECOVERED";
+    return;
+  }
+
+  state.packets.add(input);
+  updatePacketUI();
+
+  crewRecordsOutput.textContent =
+    `PACKET RECOVERED (${state.packets.size}/3)`;
+
+  // 🧠 WIN CONDITION HOOK
+  if (state.packets.size >= 3) {
+    crewRecordsOutput.textContent =
+      "ALL PACKETS RECOVERED // ACCESS LEVEL INCREASED";
+  }
+}
 
 
 //BOOT
@@ -156,7 +239,7 @@ function showLogo() {
   const logo = document.createElement("img");
   logo.src = "assets/logo2.png";
   logo.alt = "UMC Logo";
-  
+
   logo.classList.add("boot-logo")
 
   bootScreen.appendChild(logo);
@@ -219,7 +302,7 @@ crewRecordsButton.addEventListener("click", () => {
 
   crewRecordsPanel.classList.remove("hidden");
 
-  crewRecordsOutput.textContent = ">INPUT CREW MEMBER NAME";
+  crewRecordsOutput.textContent = ">INPUT CREW MEMBER NAME, OR TYPE HELP";
 
   crewRecordsInput.value = "";
   crewRecordsInput.focus();
@@ -276,6 +359,20 @@ crewRecordsSubmit.addEventListener("click", handleCrewSubmit);
 function handleCrewSubmit() {
 
   const rawInput = crewRecordsInput.value;
+  const cleaned = rawInput.toLowerCase().trim();
+
+  crewRecordsInput.value = "";
+
+
+  // 🧠 COMMAND FIRST
+  const isCommand = runCommand(cleaned, cleaned, rawInput);
+  if (isCommand) return;
+
+  // 📦 PACKET MODE
+  if (state.resMode) {
+    handlePacketEntry(cleaned);
+    return;
+  }
 
   const resolved = resolveCrewName(rawInput);
 
@@ -288,11 +385,17 @@ function handleCrewSubmit() {
   }, 800);
 }
 
-crewRecordsInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    handleCrewSubmit();
-  }
-});
+function resetTerminal() {
+  state.resMode = false;
+
+  crewRecordsInput.value = "";
+
+  cancelTyping = true;
+  typingActive = false;
+
+  crewRecordsOutput.textContent =
+    ">INPUT CREW MEMBER NAME, OR TYPE HELP";
+}
 
 function loadCrewRecord(name) {
   const filePath = crewRecords[name];
@@ -311,7 +414,7 @@ function loadCrewRecord(name) {
 
 
 function typeIntoElement(element, text, speed = 25) {
-  if(typingActive) return
+  if (typingActive) return
 
   cancelTyping = false;
   typingActive = true;
@@ -322,14 +425,14 @@ function typeIntoElement(element, text, speed = 25) {
 
   function step() {
 
-     if (cancelTyping) {
-     typingActive = false;
-     return;
-     }
+    if (cancelTyping) {
+      typingActive = false;
+      return;
+    }
 
 
-     if (i < text.length) {
-       element.textContent += text.charAt(i);
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
 
       // Keep the newest text visible
       element.scrollTop = element.scrollHeight;
@@ -337,7 +440,7 @@ function typeIntoElement(element, text, speed = 25) {
       i++;
       setTimeout(step, speed);
     } else {
-       typingActive = false;
+      typingActive = false;
     }
   }
 
@@ -365,9 +468,48 @@ document.querySelectorAll(".folder").forEach(folder => {
   });
 });
 
+//LOADING SCREEN - FILES
+function showLoading(callback) {
+  const messages = [
+    "ACCESSING NODE...",
+    "INITIALISING DECRYPTION ENGINE...",
+    "REBUILDING SECTOR MAP...",
+    "<span class='warning'>WARNING: DATA CORRUPTION DETECTED</span>",
+    "RECOVERING FRAGMENTED PACKETS...",
+    "FILE FOUND"
+  ];
+
+  let i = 0;
+
+  loadingPanel.classList.remove("hidden");
+
+  function nextLine() {
+    if (i < messages.length) {
+      loadingText.innerHTML = messages[i];
+      i++;
+
+      const delay = Math.floor(Math.random() * 400) + 150;
+      setTimeout(nextLine, delay);
+    } else {
+      setTimeout(() => {
+        loadingPanel.classList.add("hidden");
+        callback();
+      }, 300);
+    }
+  }
+
+  nextLine();
+}
+
 // FILES
 document.querySelectorAll(".file").forEach(file => {
   file.addEventListener("click", () => {
+
+    // 🧠 OVERRIDE: packet node takes priority
+    if (file.id === "packet-node") {
+      handlePacketNode();
+      return;
+    }
 
     // 🔐 LOCKED FILES → show loading panel, then password ui
     if (file.classList.contains("locked")) {
@@ -382,47 +524,33 @@ document.querySelectorAll(".file").forEach(file => {
       return;
     }
 
-    //LOADING ANIMATION
-    function showLoading(callback) {
-      const messages = [
-        "ACCESSING NODE...",
-        "INITIALISING DECRYPTION ENGINE...",
-        "REBUILDING SECTOR MAP...",
-        "<span class='warning'>WARNING: DATA CORRUPTION DETECTED</span>",
-        "RECOVERING FRAGMENTED PACKETS...",
-        "FILE FOUND"
-      ];
-
-      let i = 0;
-
-      loadingPanel.classList.remove("hidden");
-
-      function nextLine() {
-        if (i < messages.length) {
-          loadingText.innerHTML = messages[i];
-          i++;
-          const min = 100;
-          const max = 650;
-
-          const delay = Math.floor(Math.random() * (max - min + 1)) + min;
-
-          setTimeout(nextLine, delay);
-        } else {
-          setTimeout(() => {
-            loadingPanel.classList.add("hidden");
-            callback();
-          }, 300);
-        }
-      }
-
-      nextLine();
-    }
-
     showLoading(() => {
       openFile(file);
     });
   });
 });
+
+//PACKET NODE OPENED
+function handlePacketNode() {
+
+  showLoading(() => {
+
+    if (!hasAllPackets()) {
+      textContent.textContent = "NOT ENOUGH PACKETS RECOVERED.";
+      textPanel.classList.remove("hidden");
+      return;
+    }
+
+    fetch("assets/text/packet_password.txt")
+      .then(res => res.text())
+      .then(text => {
+        textContent.textContent = text;
+        textPanel.classList.remove("hidden");
+      });
+
+  });
+
+}
 
 //IF FILE IS OPENED
 function openFile(file) {
