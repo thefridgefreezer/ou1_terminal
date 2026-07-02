@@ -1,1 +1,20 @@
-placeholder text
+>MS://TRI
+
+>Part of the UMC Modular System Suite, the Trauma Recovery Interface can be activated by the Captain at any time for operational support in high-stress situations.
+
+>OPERATIONAL AUTHORITY CLEARANCES
+.COC subroutines
+.Flight pathing and engine management
+.Oxygen and water dispersal systems
+.Crew medical triage prioritisation
+.Vessel structural integrity
+.Cargo containment protocols
+.External communications filtering and delay management
+.Internal surveillance network
+.Automated incident report generation and submission
+.Biological asset continuity management
+.Neural pattern capture and restoration
+.Emergency behavioural override
+.Mission objective reweighting under catastrophic conditions
+.Reactor load balancing and thermal suppression systems
+
