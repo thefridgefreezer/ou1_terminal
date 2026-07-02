@@ -18,3 +18,6 @@
 .Mission objective reweighting under catastrophic conditions
 .Reactor load balancing and thermal suppression systems
 
+[!WARNING!]
+>MODULAR SYSTEM SHOULD ONLY BE ACTIVATED AFTER FOLLOWING COGNITION CORE SAFETY PROCEDURES.
+>UNDER NO CIRCUMSTANCES SHOULD THE TRI BE ACTIVATED IF THE COGNITION CORE IS COMPROMISED.
